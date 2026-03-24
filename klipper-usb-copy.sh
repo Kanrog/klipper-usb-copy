@@ -5,9 +5,11 @@
 
 # ── Configuration ────────────────────────────────────────────────────────────
 KLIPPER_GCODE_DIR="/home/pi/printer_data/gcodes"   # adjust if your path differs
+KLIPPER_SOCKET="/home/pi/printer_data/comms/klippy.sock"
 MOUNT_POINT="/mnt/usb_klipper"
 LOG_FILE="/var/log/klipper-usb-copy.log"
 DEVICE="/dev/$1"                                    # e.g. /dev/sda1, passed from systemd
+sleep 3                                             # wait for partition to be ready
 # ─────────────────────────────────────────────────────────────────────────────
 
 log() {
@@ -63,5 +65,16 @@ log "Done. Copied: $COPIED  Skipped (unchanged): $SKIPPED"
 
 # Unmount cleanly
 umount "$MOUNT_POINT" && log "Unmounted $DEVICE" || log "WARNING: Failed to unmount $DEVICE"
+
+# Send M117 message to Klipper display
+python3 -c "
+import socket, json, time
+sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+sock.connect('$KLIPPER_SOCKET')
+cmd = json.dumps({'method': 'gcode/script', 'params': {'script': 'M117 USB: $COPIED file(s) copied'}, 'id': 1}) + '\x03'
+sock.send(cmd.encode())
+time.sleep(0.5)
+sock.close()
+" 2>>"$LOG_FILE" && log "M117 sent to Klipper" || log "WARNING: Could not send M117 to Klipper"
 
 exit 0
