@@ -1,0 +1,1 @@
+bash <(curl -s https://raw.githubusercontent.com/kanrog/klipper-usb-copy/main/install.sh)

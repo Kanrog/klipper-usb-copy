@@ -1,0 +1,8 @@
+[Unit]
+Description=Copy G-code files from USB drive to Klipper
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/klipper-usb-copy.sh %I
+RemainAfterExit=no
