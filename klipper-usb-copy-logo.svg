@@ -1,0 +1,63 @@
+<?xml version="1.0" standalone="no"?>
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" id="logoSvg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <!-- Electric Blue Gradient -->
+            <linearGradient id="electricBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#38bdf8"/>
+                <stop offset="100%" stop-color="#0284c7"/>
+            </linearGradient>
+
+            <!-- Glow Filter -->
+            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+            </filter>
+        </defs>
+
+        <!-- Background Card Style -->
+        <rect x="15" y="15" width="170" height="170" rx="24" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+
+        <!-- Terminal Brackets (< / >) -->
+        <g stroke="url(#electricBlue)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#glow)">
+            <!-- Left Bracket -->
+            <path d="M 65 65 L 45 100 L 65 135"/>
+            <!-- Slash -->
+            <path d="M 110 55 L 90 145" opacity="0.5" stroke-dasharray="4 4"/>
+            <!-- Right Bracket -->
+            <path d="M 135 65 L 155 100 L 135 135"/>
+        </g>
+
+        <!-- Animated USB Drive Silhouette -->
+        <g id="usb-drive" transform="translate(100, 100)">
+            <!-- Floating Animation -->
+            <animateTransform attributeName="transform" type="translate" values="100 102; 100 98; 100 102" dur="3s" repeatCount="indefinite" additive="sum"/>
+
+            <!-- USB Body -->
+            <rect x="-12" y="-15" width="24" height="35" rx="4" fill="url(#electricBlue)" filter="url(#glow)"/>
+            
+            <!-- USB Connector (Pins) -->
+            <rect x="-8" y="-27" width="16" height="14" rx="2" fill="none" stroke="url(#electricBlue)" stroke-width="3"/>
+            <line x1="-4" y1="-23" x2="-4" y2="-17" stroke="#0f172a" stroke-width="2" stroke-linecap="round"/>
+            <line x1="4" y1="-23" x2="4" y2="-17" stroke="#0f172a" stroke-width="2" stroke-linecap="round"/>
+
+            <!-- LED Indicator Light (Blinking) -->
+            <circle cx="0" cy="-2" r="2" fill="#ffffff">
+                <animate attributeName="opacity" values="0.2;1;0.2" dur="1s" repeatCount="indefinite"/>
+            </circle>
+        </g>
+
+        <!-- Animated Data Transfer Wave / Pulses -->
+        <g stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" fill="none">
+            <!-- Pulse 1 -->
+            <path d="M 75 145 Q 100 160 125 145" opacity="0">
+                <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/>
+                <animate attributeName="transform" type="translate" values="0 -15; 0 5" dur="1.5s" repeatCount="indefinite"/>
+            </path>
+            <!-- Pulse 2 -->
+            <path d="M 82 148 Q 100 160 118 148" opacity="0">
+                <animate attributeName="opacity" values="0;1;0" begin="0.5s" dur="1.5s" repeatCount="indefinite"/>
+                <animate attributeName="transform" type="translate" values="0 -15; 0 5" begin="0.5s" dur="1.5s" repeatCount="indefinite"/>
+            </path>
+        </g>
+
+    </svg>

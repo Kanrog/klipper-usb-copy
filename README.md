@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="klipper-usb-copy-logo.svg" alt="klipper-usb-copy Logo" width="200" height="200">
+</p>
+
 # klipper-usb-copy
 
 Automatically copies G-code files from a USB drive to your Klipper printer when you plug it in — no computer required.
